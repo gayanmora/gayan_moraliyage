@@ -1,0 +1,19 @@
+
+rm(list=ls(all=TRUE))
+pov <- read.csv("C:/Users/Gayan/Desktop/SKKU_DataScience_2015-master/data_sets/UNdata_poverty.csv")
+
+
+# (1) Compare the precipitation from 2008 to 2010
+
+y2008 <- pov[pov$Year==2008,]
+y2009 <- pov[pov$Year==2009,]
+y2010 <- pov[pov$Year==2010,]
+
+hist((y2008$Value), main = "Population below poverty line in 2008", xlab="Percentage")
+hist((y2009$Value), main = "Population below poverty line in 2009", xlab="Percentage")
+hist((y2010$Value), main = "Population below poverty line in 2010", xlab="Percentage")
+
+# (2) precentage for all countries over time.
+
+aggCountry <- aggregate(pov$Value, list(pov$Country), mean)
+hist(as.double(aggCountry$x), main = "Population below poverty line", xlab="Values (percentage)")
